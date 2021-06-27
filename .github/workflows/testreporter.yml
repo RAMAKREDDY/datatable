@@ -27,11 +27,12 @@ jobs:
       - name: 'test part'
         run: npm run website.automation.test
         if: always()
-      - uses: actions/checkout@v2   
-      - uses: ./
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
         with:
-         artifact: test-results
-         name: Workflow Report
-         path: '*.xml'
-         reporter: jest-junit
+          name: JEST Tests            # Name of the check run which will be created
+          path: test-results/jest-*.xml    # Path to test results
+          reporter: jest-junit 
+ 
     
