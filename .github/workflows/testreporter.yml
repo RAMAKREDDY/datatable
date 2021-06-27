@@ -27,19 +27,11 @@ jobs:
       - name: 'test part'
         run: npm run website.automation.test
         if: always()
-          
-      - name: Upload test results
-        if: success() || failure()
-        uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v2   
+      - uses: ./
         with:
-          name: test-results
-          path: test-results/jest-*.xml
-
-      - name: Create test report
-        uses: ./
-        if: success() || failure()
-        with:
-          name: JEST Tests
-          path: test-results/jest-*.xml
-          reporter: jest-junit
-          
+         artifact: test-results
+         name: Workflow Report
+         path: '*.xml'
+         reporter: jest-junit
+    
