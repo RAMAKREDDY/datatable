@@ -26,11 +26,7 @@ jobs:
       - name: 'test part'
         run: npm run website.automation.test
         if: always()
-      - name: Allure EE upload
-        if: always()
-        continue-on-error: true
-        uses: simple-elf/allurectl-action@master
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v2
         with:
-          allure_results: allure-results
-          allure_ee_endpoint: ${{ secrets.ALLURE_EE_ENDPOINT }}
-          allure_ee_token: ${{ secrets.ALLURE_EE_TOKEN }}
+          report_paths: '**/build/test-results/test/TEST-*.xml'
