@@ -43,5 +43,5 @@ jobs:
         with:
          artifact: test-results
          name: JEST Tests 
-         path: './jest-junit.xml'                    # Path to test results (inside artifact .zip)
+         path: 'jest-junit.xml'                    # Path to test results (inside artifact .zip)
          reporter: jest-junit
