@@ -36,6 +36,7 @@ jobs:
           
       - uses: dorny/test-reporter@v1
         with:
-         artifact: test-results            # artifact name
-         path: ./jest-junit.xml                    # Path to test results (inside artifact .zip)
+         artifact: test-results
+         name: JEST Tests 
+         path: './jest-junit.xml'                    # Path to test results (inside artifact .zip)
          reporter: jest-junit
