@@ -34,4 +34,4 @@ jobs:
         with:
           name: JEST Tests            # Name of the check run which will be created
           path: './testreport/*.xml'    # Path to test results
-          reporter: mocha-json   
+          reporter: jest-junit   
