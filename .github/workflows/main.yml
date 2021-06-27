@@ -37,6 +37,6 @@ jobs:
          domain: ${{github.repository_owner}}
          
       - name: Publish Results to Testspace
-        run: testspace testcontent/**/*.xml"
+        run: testspace [${{ matrix.os}}]./testcontent/*.xml
         if: always()
      
