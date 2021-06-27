@@ -20,9 +20,6 @@ jobs:
       - name: 'Build'
         run: npm install   
         
-      # ------ Lint ----------------
-      - name: 'Lint'
-        run: npm run lint:eslint
         
       # -------------- Test Components ------------------
       # 1.Test 
@@ -37,4 +34,3 @@ jobs:
           allure_results: allure-results
           allure_ee_endpoint: ${{ secrets.ALLURE_EE_ENDPOINT }}
           allure_ee_token: ${{ secrets.ALLURE_EE_TOKEN }}
-          project_id: ${{ secrets.ALLURE_EE_PROJECT_ID }}
