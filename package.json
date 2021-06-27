@@ -39,12 +39,24 @@
     "mocha": "^9.0.0",
     "prettier": "^2.3.1",
     "ts-node": "^10.0.0",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "jest": "^26.5.3",
+    "jest-junit": "^12.0.0"
   },
-  "scripts": {
+  "jest-junit": {
+  "outputDirectory": "reports",
+  "outputName": "jest-junit.xml",
+  "ancestorSeparator": " › ",
+  "uniqueOutputName": "false",
+  "suiteNameTemplate": "{filepath}",
+  "classNameTemplate": "{classname}",
+  "titleTemplate": "{title}"
+},
+"scripts": {
     "test": "mocha",
     "website.automation.test": "./node_modules/.bin/wdio wdio.conf.js --suite website",
-    "lint:eslint": "eslint --ext .ts --fix --fix-type suggestion,layout . && echo 'Lint complete.'"
+    "lint:eslint": "eslint --ext .ts --fix --fix-type suggestion,layout . && echo 'Lint complete.'",
+    "test": "jest --ci --reporters=default --reporters=jest-Junit"
   },
   "keywords": [
     "mocha"
