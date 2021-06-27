@@ -34,6 +34,11 @@ jobs:
           name: test-results
           path: ./test-results/jest-junit.xml
           
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: test-results
+          
       - uses: dorny/test-reporter@v1
         with:
          artifact: test-results
