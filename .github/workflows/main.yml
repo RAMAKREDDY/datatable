@@ -1,0 +1,31 @@
+name: 'Mobile Tests'
+on: 
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      # Push events on master branch
+      - main
+     
+
+jobs:
+  ubuntu-job:
+    # Browstack Integration
+    name: 'Mo'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout the repository'
+        uses: actions/checkout@v2
+      # ------- Build ---------------
+      - name: 'Build'
+        run: npm install   
+        
+      # ------ Lint ----------------
+      - name: 'Lint'
+        run: npm run lint:eslint
+        
+      # -------------- Test Components ------------------
+      # 1.Test 
+      - name: 'test part'
+        run: npm run e2e:mobile:homePart1
+        if: always()
+     
