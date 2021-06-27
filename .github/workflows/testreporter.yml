@@ -1,1 +1,36 @@
 
+name: 'Mobile Tests'
+on: 
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      # Push events on master branch
+      - main
+     
+
+jobs:
+  ubuntu-job:
+    # Browstack Integration
+    name: 'Mo'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout the repository'
+        uses: actions/checkout@v2
+      # ------- Build ---------------
+      - name: 'Build'
+        run: npm install   
+        
+        
+      # -------------- Test Components ------------------
+      # 1.Test 
+      - name: 'test part'
+        run: npm run website.automation.test
+        if: always()
+      
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: JEST Tests            # Name of the check run which will be created
+          path: './testcontent/*.xml'    # Path to test results
+          reporter: jest-junit   
