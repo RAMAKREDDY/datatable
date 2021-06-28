@@ -10,7 +10,6 @@ on:
 
 jobs:
   ubuntu-job:
-    # Browstack Integration
     name: 'Mo'
     runs-on: ubuntu-latest
     steps:
