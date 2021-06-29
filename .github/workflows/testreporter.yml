@@ -28,6 +28,7 @@ jobs:
         if: always()
  
     # ----------- Allure Report --------------
+    
       - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
