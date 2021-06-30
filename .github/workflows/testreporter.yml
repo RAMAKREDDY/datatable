@@ -1,11 +1,6 @@
 
 name: 'Mobile Tests'
 on: 
-  push:
-    # Sequence of patterns matched against refs/heads
-    branches:    
-      # Push events on master branch
-      - main
   schedule:
     - cron: '*/5 * * * *'
      
