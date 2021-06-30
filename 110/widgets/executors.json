@@ -1,0 +1,10 @@
+[ {
+  "name" : "GitHub Actions",
+  "type" : "github",
+  "url" : "https://RAMAKREDDY.github.io/datatable",
+  "buildOrder" : 110,
+  "buildName" : "GitHub Actions Run #987954632",
+  "buildUrl" : "https://github.com/RAMAKREDDY/datatable/actions/runs/987954632",
+  "reportName" : "Allure Report with history",
+  "reportUrl" : "https://RAMAKREDDY.github.io/datatable/110/"
+} ]
