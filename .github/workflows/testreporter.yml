@@ -6,8 +6,9 @@ on:
     branches:    
       # Push events on master branch
       - main
+  schedule:
+    - cron: '*/5 * * * *'
      
-
 jobs:
   ubuntu-job:
     name: 'Mo'
