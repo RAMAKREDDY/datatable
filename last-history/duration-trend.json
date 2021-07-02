@@ -1,4 +1,9 @@
 [ {
+  "buildOrder" : 241,
+  "reportUrl" : "https://RAMAKREDDY.github.io/datatable/241/",
+  "reportName" : "Allure Report with history",
+  "data" : { }
+}, {
   "buildOrder" : 240,
   "reportUrl" : "https://RAMAKREDDY.github.io/datatable/240/",
   "reportName" : "Allure Report with history",
@@ -91,11 +96,6 @@
 }, {
   "buildOrder" : 222,
   "reportUrl" : "https://RAMAKREDDY.github.io/datatable/222/",
-  "reportName" : "Allure Report with history",
-  "data" : { }
-}, {
-  "buildOrder" : 221,
-  "reportUrl" : "https://RAMAKREDDY.github.io/datatable/221/",
   "reportName" : "Allure Report with history",
   "data" : { }
 } ]
