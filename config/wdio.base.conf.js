@@ -2,6 +2,10 @@ require('dotenv').config();
 require('ts-node').register({ transpileOnly: true });
 const suites = require('./suites.config').config;
 let screenshotName = '';
+const reportportal = require('wdio-reportportal-reporter');
+const RpService = require("wdio-reportportal-service");
+const rpConf = JSON.parse(require('fs').readFileSync('ReportPortal.config.json'));
+rpConf.reportPortalClientConfig.token = process.env.RP_USERUUID
 exports.config = {
   // ====================
   // Runner Configuration
@@ -37,7 +41,8 @@ exports.config = {
   connectionRetryTimeout: 90000,
 
   connectionRetryCount: 3,
-  services: ['chromedriver'],
+  services: ['chromedriver',[RpService, {}]],
+  reporters: [ [reportportal, rpConf] ],
   framework: process.env.FRAMEWORK,
   //   =================
   // Reporters
