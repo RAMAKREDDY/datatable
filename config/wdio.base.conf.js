@@ -45,7 +45,7 @@ exports.config = {
   services: ['chromedriver',[RpService, {}],[TimelineService]],
   reporters: [ [reportportal, rpConf] ],
   framework: process.env.FRAMEWORK,
-  reporters: [['timeline', { outputDir: 'screenshots' }]],
+  reporters: [['timeline', { outputDir: 'test-results' }]],
   //   =================
   // Reporters
   // =================
