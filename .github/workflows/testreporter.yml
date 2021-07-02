@@ -26,18 +26,16 @@ jobs:
         run: npm run website.automation.test
         if: always()
  
-    # ----------- Allure Report --------------
       
-      - uses: actions/checkout@v2
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: ./test-results/timeline-report.html
+          path: /test-results/timeline-report.html
       - uses: actions/download-artifact@v2
         with:
          name: my-artifact
-         path: ./test-results/timeline-report.html
+         path: /test-results/timeline-report.html
     
     
 #       - name: Get Allure history
