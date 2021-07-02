@@ -5,6 +5,7 @@ let screenshotName = '';
 const reportportal = require('wdio-reportportal-reporter');
 const RpService = require("wdio-reportportal-service");
 const rpConf = JSON.parse(require('fs').readFileSync('ReportPortal.config.json'));
+const { TimelineService } = require('wdio-timeline-reporter/timeline-service');
 rpConf.reportPortalClientConfig.token = process.env.RP_USERUUID
 exports.config = {
   // ====================
@@ -41,9 +42,10 @@ exports.config = {
   connectionRetryTimeout: 90000,
 
   connectionRetryCount: 3,
-  services: ['chromedriver',[RpService, {}]],
+  services: ['chromedriver',[RpService, {}],[TimelineService]],
   reporters: [ [reportportal, rpConf] ],
   framework: process.env.FRAMEWORK,
+  reporters: [['timeline', { outputDir: 'screenshots' }]],
   //   =================
   // Reporters
   // =================
