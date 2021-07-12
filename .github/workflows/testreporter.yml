@@ -33,8 +33,7 @@ jobs:
       - name: 'test part'
         run: npm run website.automation.test
         if: always()
- 
-      
+  
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
