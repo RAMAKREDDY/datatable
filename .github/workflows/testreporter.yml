@@ -27,8 +27,7 @@ jobs:
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
           -d '{"ref": "main"}'
-        
-        
+            
       # -------------- Test Components ------------------
       # 1.Test 
       - name: 'test part'
