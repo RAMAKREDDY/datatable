@@ -26,7 +26,7 @@ jobs:
           curl -X POST https://api.github.com/repos/RAMAKREDDY/wdioreportportal/actions/workflows/main.yml/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"ref": "main"}'
+          -d '{"ref": "main"}'
         
         
       # -------------- Test Components ------------------
