@@ -18,13 +18,13 @@ jobs:
       - name: 'Build'
         run: npm install   
         
-      - name: Invoke workflow in another repo with inputs
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-         workflow: CI
-         repo: RAMAKREDDY/wdioreportportal
-         token: ${{ secrets.REPORTPORTAL_REPO_TOKEN }}
-         inputs: '{ "message": "blah blah", "debug": true }'
+      - name: PING - Dispatch initiating repository event
+        if: github.event.action != 'pong'
+        run: |
+          curl -X POST https://api.github.com/repos/RAMAKREDDY/wdioreportportal/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.DATATABLE_REPO_TOKEN }} \
+          --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
             
       # -------------- Test Components ------------------
       # 1.Test 
