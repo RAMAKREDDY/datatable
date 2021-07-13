@@ -26,7 +26,8 @@ jobs:
           -u ${{ secrets.DATATABLE_REPO_TOKEN }} \
           --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
             
-      # -------------- Test Components ------------------
+     
+     # -------------- Test Components ------------------
       # 1.Test 
       - name: 'test part'
         run: npm run website.automation.test
