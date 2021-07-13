@@ -1,15 +1,15 @@
-name: Remote Dispatch Action Initiator
-
+name: Deploy
 on:
+  workflow_dispatch:
   push:
-  repository_dispatch:
-
+    branches:
+      - master
 jobs:
-  ping-pong:
+  build:
+    name: Run API
     runs-on: ubuntu-latest
     steps:
-      - name: PING - Dispatch initiating repository event
-        if: github.event.action != 'pong'
+      - name: Build API
         run: |
-          curl -XPOST -u "{{GITHUB.ACCESS_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/RAMAKREDDY/wdioreportportal/actions/workflows/main.yml/dispatches --data '{"ref": "main"}'
-          
+          echo "Build API"
+          sleep 10s
