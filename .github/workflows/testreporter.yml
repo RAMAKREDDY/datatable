@@ -1,23 +1,15 @@
+name: Remote Dispatch Action Initiator
 
-name: 'Mobile Tests'
-on: 
-  # Triggers the workflow on push or pull request events but only for the main branch
+on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]     
+  schedule:
+    - cron: '0 12 * * *'
+  repository_dispatch:
+
 jobs:
-  ubuntu-job:
-    name: 'Mo'
+  ping-pong:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout the repository'
-        uses: actions/checkout@v2
-        
-      # ------- Build ---------------
-      - name: 'Build'
-        run: npm install   
-        
       - name: PING - Dispatch initiating repository event
         if: github.event.action != 'pong'
         run: |
@@ -25,47 +17,11 @@ jobs:
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.DATATABLE_REPO_TOKEN }} \
           --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
-            
-     
-     # -------------- Test Components ------------------
-      # 1.Test 
-      - name: 'test part'
-        run: npm run website.automation.test
-        if: always()
-  
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: test-results
-#       - uses: actions/download-artifact@v2
-#         with:
-#          name: my-artifact
-#          path: test-results/timeline-report.html
-    
-    
-#       - name: Get Allure history
-#         uses: actions/checkout@v2
-#         if: always()
-#         continue-on-error: true
-#         with:
-#           ref: gh-pages
-#           path: gh-pages
-#       - name: Allure Report
-#         uses: simple-elf/allure-report-action@master
-#         if: always()
-#         id: allure-report
-#         with:
-#           allure_results: ./allure-results
-#           gh_pages: gh-pages
-#           allure_report: allure-report
-#           allure_history: allure-history
-#           keep_reports: 20
-          
-#       - name: Deploy report to Github Pages
-#         if: always()
-#         uses: peaceiris/actions-gh-pages@v2
-#         env:
-#          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          PUBLISH_BRANCH: gh-pages
-#          PUBLISH_DIR: allure-history
+      - name: ACK - Acknowledge pong from remote repository
+        if: github.event.action == 'pong'
+        run: |
+          echo "PONG received from '${{ github.event.client_payload.repository }}'" && \
+          curl -X POST https://api.github.com/repos/RAMAKREDDY/wdioreportportal/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.DATATABLE_REPO_TOKEN}} \
+          --data '{"event_type": "ack", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
